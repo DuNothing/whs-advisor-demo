@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# 🦺 Work Health & Safety (WHS) Advisor – Southern Cross AI Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This demo showcases a Retrieval-Augmented Generation (RAG) interface designed to support Work Health & Safety (WHS) compliance, training, and information access. It simulates an intelligent assistant that helps users explore Australian WHS laws, regulations, codes of practice, and response protocols using natural language queries.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🧩 Purpose
 
-### `npm start`
+The WHS Advisor helps users:
+- Understand WHS laws and obligations (e.g. WHS Act & Regulations)
+- Access official Codes of Practice
+- Learn about incident response procedures
+- Navigate workers’ compensation processes
+- File or review complaints and reports
+- Use plain language to query legal and procedural WHS documents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The demo is tailored for educational and public-sector stakeholders evaluating how LLMs can streamline compliance and workplace safety workflows.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🧱 Core Screens
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Screen Name                      | Description                                                                 |
+|----------------------------------|-----------------------------------------------------------------------------|
+| 🏠 **Overview**                  | Entry point with role-based summaries and visual navigation                |
+| 📘 **WHS Act & Regulations**     | Summarized legislation and clauses for state and federal WHS laws          |
+| 🛠️ **Codes of Practice**         | Interactive browser for official model codes across sectors                |
+| 🚨 **Incident & Response Toolkit** | First-aid, emergency response, and risk control procedures                 |
+| 🧾 **Workers' Compensation Guide** | Steps, forms, and timelines for injury compensation                        |
+| 📣 **Complaints & Reporting**    | Guidance on how to report WHS concerns internally or to authorities        |
 
-### `npm run build`
+Each screen is powered by a combination of static summaries and (optionally) dynamic AI-generated responses via sidebar chat.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚙️ Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **React** (with Create React App)
+- **Tailwind CSS** for UI styling
+- **Lucide Icons** for visuals
+- **Modular screen components** for isolated development
+- **(Optional)** LangChain + FastAPI backend for live chat with documents
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🚀 Setup & Integration
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Follow the full [Integration Guide](./Integration%20Guide.md) for detailed instructions.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Basic Setup (Steps 1–3):
+```bash
+# Clone the project
+git clone https://github.com/your-org/whs-advisor.git
+cd whs-advisor
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Install dependencies
+npm install
 
-## Learn More
+# Start development server
+npm start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
