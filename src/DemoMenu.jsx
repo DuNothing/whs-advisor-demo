@@ -4,13 +4,13 @@ import WHSAdvisorDemo from './components/demos/whs-advisor';
 
 // Authentication and User State
 const SouthernCrossPortal = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userRole, setUserRole] = useState(null);
-  const [showLogin, setShowLogin] = useState(false);
-  const [credentials, setCredentials] = useState({ username: '', password: '' });
-  const [showPassword, setShowPassword] = useState(false);
-  const [loginError, setLoginError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Tracks if user is logged in
+  const [userRole, setUserRole] = useState(null); // Stores user role ('admin' or 'demo')
+  const [showLogin, setShowLogin] = useState(false); // Controls login modal visibility
+  const [credentials, setCredentials] = useState({ username: '', password: '' }); // Stores login form data
+  const [showPassword, setShowPassword] = useState(false); // Toggles password visibility
+  const [loginError, setLoginError] = useState(''); // Stores login error messages
+  const [isLoading, setIsLoading] = useState(false); // Loading state for login process
   const [selectedDemo, setSelectedDemo] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [demoLoading, setDemoLoading] = useState(false);
