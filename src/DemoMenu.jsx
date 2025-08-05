@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Lock, User, Eye, EyeOff, Shield, Activity, Settings, Brain, Leaf, Plane, Mountain, Heart, Database, ArrowLeft, Play, FileText, Code, BarChart3, Sparkles, Clock, Users, TrendingUp } from 'lucide-react';
 import WHSAdvisorDemo from './components/demos/whs-advisor';
 
+// Authentication and User State
 const SouthernCrossPortal = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState(null);
