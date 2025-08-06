@@ -49,7 +49,8 @@ const WHSAdvisorOverview = ({ navigation, onNext }) => {
       icon: AlertTriangle,
       title: 'Incident Reporting',
       description: 'Streamlined incident documentation and regulator notification',
-      color: 'from-amber-500 to-orange-600'
+      color: 'from-amber-500 to-orange-600',
+      navTarget: 'incident-reporting'
     },
     {
       icon: BarChart3,

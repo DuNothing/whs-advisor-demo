@@ -1,5 +1,6 @@
 import React from 'react';
 import { useWHSNavigation } from '../../../hooks/useWHSNavigation';
+import WHSIncidentReportingScreen from './WHSComplaintsReportingScreen';
 import WHSAdvisorOverview from './WHSAdvisorOverview';
 import WHSActRegulationsScreen from './WHSActRegulationsScreen';
 import WHSCodesOfPracticeScreen from './WHSCodesOfPracticeScreen';
@@ -77,6 +78,13 @@ const WHSAdvisorDemo = () => {
             onReturnToStart={navigation.navigateToOverview}
           />
         );
+        case 'incident-reporting':
+          return (
+              <WHSIncidentReportingScreen
+               onBack={navigation.navigatePrevious}
+               onReturnToStart={navigation.navigateToOverview}
+              />
+          );
       default:
         return <WHSAdvisorOverview onNext={navigation.navigateNext} />;
     }
