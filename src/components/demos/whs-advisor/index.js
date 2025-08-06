@@ -10,6 +10,7 @@ import WHSComplaintsReportingScreen from './WHSComplaintsReportingScreen';
 import WHSLegislativeGuidanceScreen from './WHSLegislativeGuidanceScreen';
 import WHSSafetyAnalytics from './WHSSafetyAnalytics';
 import WHSComplianceMonitoring from './WHSComplianceMonitoring';
+import WHSRiskAssessmentScreen from './WHSRiskAssessmentScreen';
 import WHSMultiRoleSupport from './WHSMultiRoleSupport';
 
 const WHSAdvisorDemo = () => {
@@ -48,6 +49,12 @@ const WHSAdvisorDemo = () => {
       case 'compliance-monitoring':
         return (
           <WHSComplianceMonitoring 
+            onBack={navigation.navigateToOverview}
+          />
+        );
+      case 'risk-assessment':
+        return (
+          <WHSRiskAssessmentScreen 
             onBack={navigation.navigateToOverview}
           />
         );
