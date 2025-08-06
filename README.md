@@ -50,7 +50,7 @@ Follow the full [Integration Guide](./Integration%20Guide.md) for detailed instr
 ### Basic Setup (Steps 1–3):
 ```bash
 # Clone the project
-git clone https://github.com/your-org/whs-advisor.git
+git clone https://github.com/your-org/whs-advisor-demo.git
 cd whs-advisor
 
 # Install dependencies
