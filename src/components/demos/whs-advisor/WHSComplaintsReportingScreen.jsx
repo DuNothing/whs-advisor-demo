@@ -619,24 +619,7 @@ const WHSComplaintsReportingScreen = ({ onBack, onReturnToStart }) => {
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="flex justify-between items-center pt-8 border-t border-gray-600/50">
-          <button
-            onClick={handleBack}
-            className="flex items-center space-x-2 bg-gray-700/50 hover:bg-gray-600/50 text-white px-6 py-3 rounded-lg transition-all duration-200 backdrop-blur-sm border border-gray-600/30 hover:border-cyan-500/50"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Compensation</span>
-          </button>
 
-          <button
-            onClick={handleReturnToStart}
-            className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white px-6 py-3 rounded-lg transition-all duration-200 shadow-lg shadow-green-500/30"
-          >
-            <Home className="w-4 h-4" />
-            <span>Return to Start</span>
-          </button>
-        </div>
       </main>
 
       {/* Chat with Docs Widget */}
