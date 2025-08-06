@@ -6,6 +6,7 @@ import WHSCodesOfPracticeScreen from './WHSCodesOfPracticeScreen';
 import WHSIncidentResponseScreen from './WHSIncidentResponseScreen';
 import WHSCompensationScreen from './WHSCompensationScreen';
 import WHSComplaintsReportingScreen from './WHSComplaintsReportingScreen';
+import WHSLegislativeGuidanceScreen from './WHSLegislativeGuidanceScreen';
 
 const WHSAdvisorDemo = () => {
   const navigation = useWHSNavigation();
@@ -13,7 +14,7 @@ const WHSAdvisorDemo = () => {
   const renderCurrentScreen = () => {
     switch (navigation.currentScreen) {
       case 'overview':
-        return <WHSAdvisorOverview onNext={navigation.navigateNext} />;
+        return <WHSAdvisorOverview navigation={navigation} onNext={navigation.navigateNext} />;
       case 'act-regulations':
         return (
           <WHSActRegulationsScreen 
@@ -26,6 +27,12 @@ const WHSAdvisorDemo = () => {
           <WHSCodesOfPracticeScreen 
             onNext={navigation.navigateNext}
             onBack={navigation.navigatePrevious}
+          />
+        );
+      case 'legislative-guidance':
+        return (
+          <WHSLegislativeGuidanceScreen 
+            onBack={navigation.navigateToOverview}
           />
         );
       case 'incident-response':

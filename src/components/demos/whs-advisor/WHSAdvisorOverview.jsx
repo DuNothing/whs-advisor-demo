@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, CheckCircle, AlertTriangle, FileText, BarChart3, Users, Phone, ChevronRight, MessageCircle, X, Send, Activity, Eye, Zap, Clock } from 'lucide-react';
 
-const WHSAdvisorOverview = () => {
+const WHSAdvisorOverview = ({ navigation, onNext }) => {
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMessage, setChatMessage] = useState('');
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -60,7 +60,8 @@ const WHSAdvisorOverview = () => {
       icon: FileText,
       title: 'Legislative Guidance',
       description: 'Access to WHS Act, Regulations, and Codes of Practice with AI assistance',
-      color: 'from-cyan-500 to-blue-600'
+      color: 'from-cyan-500 to-blue-600',
+      navTarget: 'legislative-guidance',
     },
     {
       icon: Users,
@@ -86,6 +87,14 @@ const WHSAdvisorOverview = () => {
       setChatMessage('');
     }
   };
+
+  // Navigation logic: use navigation prop from parent
+  const handleFeatureClick = (feature) => {
+    if (feature.navTarget && typeof navigation?.navigateToScreen === 'function') {
+      navigation.navigateToScreen(feature.navTarget, 0);
+    }
+  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
@@ -178,10 +187,17 @@ const WHSAdvisorOverview = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
+              const isClickable = !!feature.navTarget;
+
               return (
                 <div
                   key={index}
-                  className="group bg-gray-800/50 backdrop-blur-sm border border-gray-600/50 rounded-lg p-6 hover:border-cyan-500/50 hover:bg-gray-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20"
+                  className={`group bg-gray-800/50 backdrop-blur-sm border border-gray-600/50 rounded-lg p-6 hover:border-cyan-500/50 hover:bg-gray-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20 ${isClickable ? 'cursor-pointer' : ''}`}
+                  onClick={() => isClickable && handleFeatureClick(feature)}
+                  tabIndex={isClickable ? 0 : -1}
+                  role={isClickable ? 'button' : undefined}
+                  aria-label={isClickable ? feature.title : undefined}
+                  onKeyPress={e => isClickable && (e.key === 'Enter' || e.key === ' ') && handleFeatureClick(feature)}
                 >
                   <div className="relative">
                     <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-lg flex items-center justify-center mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300`}>
