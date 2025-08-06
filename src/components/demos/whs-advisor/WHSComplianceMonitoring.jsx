@@ -3,7 +3,7 @@ import { Eye, ArrowLeft, CheckCircle, AlertTriangle, Clock, TrendingUp, FileText
 
 const WHSComplianceMonitoring = ({ onBack }) => {
   const [selectedCategory, setSelectedCategory] = useState('overall');
-  // 新增：筛选弹窗和详情弹窗的状态
+  // Add: filter modal and detail modal state
   const [filterOpen, setFilterOpen] = useState(false);
   const [filters, setFilters] = useState({ status: '', priority: '' });
   const [detailOpen, setDetailOpen] = useState(false);
@@ -115,7 +115,7 @@ const WHSComplianceMonitoring = ({ onBack }) => {
     }
   };
 
-  // 新增：过滤逻辑
+  // Add: filter logic
   const filteredItems = complianceItems.filter(item => {
     const statusMatch = filters.status ? item.status === filters.status : true;
     const priorityMatch = filters.priority ? item.priority === filters.priority : true;
@@ -202,7 +202,7 @@ const WHSComplianceMonitoring = ({ onBack }) => {
             </div>
           </div>
 
-          {/* Filter 弹窗 */}
+          {/* Filter modal */}
           {filterOpen && (
             <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
               <div className="bg-gray-800 p-6 rounded-lg w-80">
@@ -294,7 +294,7 @@ const WHSComplianceMonitoring = ({ onBack }) => {
           </div>
         </div>
 
-        {/* 详情弹窗 */}
+        {/* Detail modal */}
         {detailOpen && detailItem && (
           <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
             <div className="bg-gray-800 p-6 rounded-lg w-96">
