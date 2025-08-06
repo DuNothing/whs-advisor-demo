@@ -11,6 +11,7 @@ export const useWHSNavigation = () => {
     'legislative-guidance',
     'safety-analytics',
     'compliance-monitoring',
+    'risk-assessment',
     'multi-role-support',
     'incident-response',
     'compensation',

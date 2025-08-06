@@ -36,7 +36,8 @@ const WHSAdvisorOverview = ({ navigation, onNext }) => {
       icon: CheckCircle,
       title: 'Risk Assessment',
       description: 'AI-powered workplace risk identification and mitigation strategies',
-      color: 'from-green-500 to-emerald-600'
+      color: 'from-green-500 to-emerald-600',
+      navTarget: 'risk-assessment'
     },
     {
       icon: Eye,
