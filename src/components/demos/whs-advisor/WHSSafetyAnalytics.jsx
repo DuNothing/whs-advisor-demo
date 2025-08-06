@@ -1,10 +1,43 @@
 import React, { useState } from 'react';
 import { BarChart3, ArrowLeft, TrendingUp, AlertTriangle, CheckCircle, Clock, Users, Activity } from 'lucide-react';
 
-const WHSSafetyAnalytics = ({ onBack }) => {
-  const [selectedTimeframe, setSelectedTimeframe] = useState('month');
-
-  const metrics = [
+// Metrics data for different timeframes
+const metricsData = {
+  week: [
+    {
+      title: 'Safety Incidents',
+      value: '2',
+      change: '-33%',
+      trend: 'down',
+      icon: AlertTriangle,
+      color: 'text-red-400'
+    },
+    {
+      title: 'Compliance Rate',
+      value: '93.5%',
+      change: '+1.0%',
+      trend: 'up',
+      icon: CheckCircle,
+      color: 'text-green-400'
+    },
+    {
+      title: 'Training Hours',
+      value: '210',
+      change: '+5%',
+      trend: 'up',
+      icon: Clock,
+      color: 'text-blue-400'
+    },
+    {
+      title: 'Active Workers',
+      value: '150',
+      change: '+1',
+      trend: 'up',
+      icon: Users,
+      color: 'text-purple-400'
+    }
+  ],
+  month: [
     {
       title: 'Safety Incidents',
       value: '12',
@@ -37,16 +70,117 @@ const WHSSafetyAnalytics = ({ onBack }) => {
       icon: Users,
       color: 'text-purple-400'
     }
-  ];
+  ],
+  quarter: [
+    {
+      title: 'Safety Incidents',
+      value: '30',
+      change: '-10%',
+      trend: 'down',
+      icon: AlertTriangle,
+      color: 'text-red-400'
+    },
+    {
+      title: 'Compliance Rate',
+      value: '92.8%',
+      change: '+1.8%',
+      trend: 'up',
+      icon: CheckCircle,
+      color: 'text-green-400'
+    },
+    {
+      title: 'Training Hours',
+      value: '3,500',
+      change: '+10%',
+      trend: 'up',
+      icon: Clock,
+      color: 'text-blue-400'
+    },
+    {
+      title: 'Active Workers',
+      value: '158',
+      change: '+5',
+      trend: 'up',
+      icon: Users,
+      color: 'text-purple-400'
+    }
+  ],
+  year: [
+    {
+      title: 'Safety Incidents',
+      value: '120',
+      change: '-15%',
+      trend: 'down',
+      icon: AlertTriangle,
+      color: 'text-red-400'
+    },
+    {
+      title: 'Compliance Rate',
+      value: '91.5%',
+      change: '+3.2%',
+      trend: 'up',
+      icon: CheckCircle,
+      color: 'text-green-400'
+    },
+    {
+      title: 'Training Hours',
+      value: '14,800',
+      change: '+20%',
+      trend: 'up',
+      icon: Clock,
+      color: 'text-blue-400'
+    },
+    {
+      title: 'Active Workers',
+      value: '162',
+      change: '+8',
+      trend: 'up',
+      icon: Users,
+      color: 'text-purple-400'
+    }
+  ]
+};
 
-  const safetyTrends = [
+// Trends data for different timeframes
+const trendsData = {
+  week: [
+    { month: 'Mon', incidents: 1, compliance: 90 },
+    { month: 'Tue', incidents: 0, compliance: 92 },
+    { month: 'Wed', incidents: 0, compliance: 93 },
+    { month: 'Thu', incidents: 1, compliance: 94 },
+    { month: 'Fri', incidents: 0, compliance: 95 },
+    { month: 'Sat', incidents: 0, compliance: 96 },
+    { month: 'Sun', incidents: 0, compliance: 97 }
+  ],
+  month: [
     { month: 'Jan', incidents: 8, compliance: 89 },
     { month: 'Feb', incidents: 6, compliance: 91 },
     { month: 'Mar', incidents: 5, compliance: 93 },
     { month: 'Apr', incidents: 4, compliance: 94 },
     { month: 'May', incidents: 3, compliance: 95 },
     { month: 'Jun', incidents: 2, compliance: 96 }
-  ];
+  ],
+  quarter: [
+    { month: 'Q1', incidents: 19, compliance: 90 },
+    { month: 'Q2', incidents: 11, compliance: 92 },
+    { month: 'Q3', incidents: 8, compliance: 94 },
+    { month: 'Q4', incidents: 7, compliance: 95 }
+  ],
+  year: [
+    { month: '2021', incidents: 140, compliance: 87 },
+    { month: '2022', incidents: 130, compliance: 89 },
+    { month: '2023', incidents: 120, compliance: 91 },
+    { month: '2024', incidents: 110, compliance: 93 }
+  ]
+};
+
+const WHSSafetyAnalytics = ({ onBack }) => {
+  // State for selected timeframe (week, month, quarter, year)
+  const [selectedTimeframe, setSelectedTimeframe] = useState('month');
+
+  // Get metrics and trends for the selected timeframe
+  const metrics = metricsData[selectedTimeframe];
+  const safetyTrends = trendsData[selectedTimeframe];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -72,6 +206,7 @@ const WHSSafetyAnalytics = ({ onBack }) => {
               </div>
             </div>
             
+            {/* Timeframe selection buttons */}
             <div className="flex space-x-2">
               {['week', 'month', 'quarter', 'year'].map((timeframe) => (
                 <button
@@ -93,7 +228,7 @@ const WHSSafetyAnalytics = ({ onBack }) => {
 
       {/* Main Content */}
       <main className="container mx-auto px-6 py-8">
-        {/* Key Metrics */}
+        {/* Key Metrics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {metrics.map((metric, index) => {
             const IconComponent = metric.icon;
@@ -126,6 +261,7 @@ const WHSSafetyAnalytics = ({ onBack }) => {
                   <span className="text-sm text-gray-400 w-8">{data.month}</span>
                   <div className="flex-1">
                     <div className="flex items-center space-x-4">
+                      {/* Incidents bar */}
                       <div className="flex-1">
                         <div className="flex items-center space-x-2 mb-1">
                           <span className="text-xs text-gray-400">Incidents</span>
@@ -134,10 +270,11 @@ const WHSSafetyAnalytics = ({ onBack }) => {
                         <div className="w-full bg-gray-700 rounded-full h-2">
                           <div 
                             className="bg-red-400 h-2 rounded-full transition-all duration-300"
-                            style={{ width: `${(data.incidents / 10) * 100}%` }}
+                            style={{ width: `${(data.incidents / (selectedTimeframe === 'week' ? 2 : selectedTimeframe === 'month' ? 10 : selectedTimeframe === 'quarter' ? 20 : 150)) * 100}%` }}
                           ></div>
                         </div>
                       </div>
+                      {/* Compliance bar */}
                       <div className="flex-1">
                         <div className="flex items-center space-x-2 mb-1">
                           <span className="text-xs text-gray-400">Compliance</span>
@@ -157,21 +294,22 @@ const WHSSafetyAnalytics = ({ onBack }) => {
             </div>
           </div>
 
-          {/* Recent Activity */}
+          {/* Recent Activity List */}
           <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-600/50 rounded-lg p-6">
             <h3 className="text-lg font-semibold mb-4">Recent Activity</h3>
             <div className="space-y-4">
+              {/* Activity: Safety training completed */}
               <div className="flex items-center space-x-3 p-3 bg-gray-700/30 rounded-lg">
                 <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
                   <CheckCircle className="w-4 h-4 text-green-400" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-white">Safety training completed</p>
-                  <p className="text-xs text-gray-400">156 workers trained this month</p>
+                  <p className="text-xs text-gray-400">156 workers trained this {selectedTimeframe}</p>
                 </div>
                 <span className="text-xs text-gray-400">2h ago</span>
               </div>
-              
+              {/* Activity: Risk assessment updated */}
               <div className="flex items-center space-x-3 p-3 bg-gray-700/30 rounded-lg">
                 <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
                   <Activity className="w-4 h-4 text-blue-400" />
@@ -182,7 +320,7 @@ const WHSSafetyAnalytics = ({ onBack }) => {
                 </div>
                 <span className="text-xs text-gray-400">4h ago</span>
               </div>
-              
+              {/* Activity: Incident reported */}
               <div className="flex items-center space-x-3 p-3 bg-gray-700/30 rounded-lg">
                 <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
