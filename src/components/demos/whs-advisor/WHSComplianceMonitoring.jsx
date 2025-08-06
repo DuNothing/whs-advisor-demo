@@ -3,6 +3,11 @@ import { Eye, ArrowLeft, CheckCircle, AlertTriangle, Clock, TrendingUp, FileText
 
 const WHSComplianceMonitoring = ({ onBack }) => {
   const [selectedCategory, setSelectedCategory] = useState('overall');
+  // 新增：筛选弹窗和详情弹窗的状态
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [filters, setFilters] = useState({ status: '', priority: '' });
+  const [detailOpen, setDetailOpen] = useState(false);
+  const [detailItem, setDetailItem] = useState(null);
 
   const complianceData = {
     overall: {
@@ -110,6 +115,13 @@ const WHSComplianceMonitoring = ({ onBack }) => {
     }
   };
 
+  // 新增：过滤逻辑
+  const filteredItems = complianceItems.filter(item => {
+    const statusMatch = filters.status ? item.status === filters.status : true;
+    const priorityMatch = filters.priority ? item.priority === filters.priority : true;
+    return statusMatch && priorityMatch;
+  });
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Header */}
@@ -181,12 +193,67 @@ const WHSComplianceMonitoring = ({ onBack }) => {
             <h2 className="text-xl font-bold text-white">Compliance Items</h2>
             <div className="flex space-x-2">
               <button className="px-3 py-1 bg-cyan-500 text-white rounded-lg text-sm">Export Report</button>
-              <button className="px-3 py-1 bg-gray-700 text-gray-300 rounded-lg text-sm">Filter</button>
+              <button
+                className="px-3 py-1 bg-gray-700 text-gray-300 rounded-lg text-sm"
+                onClick={() => setFilterOpen(true)}
+              >
+                Filter
+              </button>
             </div>
           </div>
 
+          {/* Filter 弹窗 */}
+          {filterOpen && (
+            <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+              <div className="bg-gray-800 p-6 rounded-lg w-80">
+                <h3 className="text-lg font-bold mb-4">Filter Items</h3>
+                <div className="mb-3">
+                  <label className="block text-sm mb-1">Status</label>
+                  <select
+                    className="w-full p-2 rounded bg-gray-700 text-white"
+                    value={filters.status}
+                    onChange={e => setFilters(f => ({ ...f, status: e.target.value }))}
+                  >
+                    <option value="">All</option>
+                    <option value="completed">Completed</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="overdue">Overdue</option>
+                    <option value="scheduled">Scheduled</option>
+                  </select>
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm mb-1">Priority</label>
+                  <select
+                    className="w-full p-2 rounded bg-gray-700 text-white"
+                    value={filters.priority}
+                    onChange={e => setFilters(f => ({ ...f, priority: e.target.value }))}
+                  >
+                    <option value="">All</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                  </select>
+                </div>
+                <div className="flex justify-end space-x-2">
+                  <button
+                    className="px-3 py-1 bg-gray-600 rounded text-white"
+                    onClick={() => setFilterOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="px-3 py-1 bg-cyan-500 rounded text-white"
+                    onClick={() => setFilterOpen(false)}
+                  >
+                    Apply
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="space-y-4">
-            {complianceItems.map((item) => (
+            {filteredItems.map((item) => (
               <div key={item.id} className="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg">
                 <div className="flex items-center space-x-4">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${getStatusColor(item.status)}`}>
@@ -212,7 +279,13 @@ const WHSComplianceMonitoring = ({ onBack }) => {
                       {item.priority.charAt(0).toUpperCase() + item.priority.slice(1)}
                     </p>
                   </div>
-                  <button className="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg text-sm transition-colors duration-200">
+                  <button
+                    className="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg text-sm transition-colors duration-200"
+                    onClick={() => {
+                      setDetailItem(item);
+                      setDetailOpen(true);
+                    }}
+                  >
                     {item.status === 'completed' ? 'View' : 'Update'}
                   </button>
                 </div>
@@ -220,6 +293,36 @@ const WHSComplianceMonitoring = ({ onBack }) => {
             ))}
           </div>
         </div>
+
+        {/* 详情弹窗 */}
+        {detailOpen && detailItem && (
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+            <div className="bg-gray-800 p-6 rounded-lg w-96">
+              <h3 className="text-lg font-bold mb-4">{detailItem.title}</h3>
+              <p className="mb-2 text-gray-300">{detailItem.description}</p>
+              <div className="mb-2">
+                <span className="text-sm text-gray-400">Status: </span>
+                <span className="text-sm">{detailItem.status}</span>
+              </div>
+              <div className="mb-2">
+                <span className="text-sm text-gray-400">Due Date: </span>
+                <span className="text-sm">{new Date(detailItem.dueDate).toLocaleDateString()}</span>
+              </div>
+              <div className="mb-4">
+                <span className="text-sm text-gray-400">Priority: </span>
+                <span className="text-sm">{detailItem.priority}</span>
+              </div>
+              <div className="flex justify-end">
+                <button
+                  className="px-3 py-1 bg-cyan-500 rounded text-white"
+                  onClick={() => setDetailOpen(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Compliance Timeline */}
         <div className="mt-8 bg-gray-800/50 backdrop-blur-sm border border-gray-600/50 rounded-lg p-6">
