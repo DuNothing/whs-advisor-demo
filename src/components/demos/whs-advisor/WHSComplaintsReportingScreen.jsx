@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Megaphone, Shield, AlertTriangle, MessageCircle, X, Send, ArrowLeft, Home, Phone, User, Building, FileText, Eye, EyeOff, Clock, CheckCircle, ArrowRight, ExternalLink, AlertCircle, Users, Lock, Mail } from 'lucide-react';
 
-const WHSComplaintsReportingScreen = () => {
+const WHSComplaintsReportingScreen = ({ onBack, onReturnToStart }) => {
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMessage, setChatMessage] = useState('');
   const [currentStep, setCurrentStep] = useState(0);
@@ -189,17 +189,17 @@ const WHSComplaintsReportingScreen = () => {
   const handleBack = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      alert('Returning to Workers\' Compensation...');
       setIsTransitioning(false);
-    }, 500);
+      onBack();
+      }, 300);
   };
 
   const handleReturnToStart = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      alert('Returning to WHS Advisor Overview...');
       setIsTransitioning(false);
-    }, 500);
+      onReturnToStart();
+      }, 300);
   };
 
   return (
@@ -245,11 +245,11 @@ const WHSComplaintsReportingScreen = () => {
             </div>
             
             <button
-              onClick={handleBack}
+              onClick={handleReturnToStart}
               className="flex items-center space-x-2 bg-gray-700/50 hover:bg-gray-600/50 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-blur-sm border border-gray-600/30 hover:border-cyan-500/50"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Back</span>
+              <span>Back to Menu</span>
             </button>
           </div>
         </div>
