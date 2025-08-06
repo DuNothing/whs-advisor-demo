@@ -11,10 +11,13 @@ const SouthernCrossPortal = () => {
   const [showPassword, setShowPassword] = useState(false); // Toggles password visibility
   const [loginError, setLoginError] = useState(''); // Stores login error messages
   const [isLoading, setIsLoading] = useState(false); // Loading state for login process
-  const [selectedDemo, setSelectedDemo] = useState(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [demoLoading, setDemoLoading] = useState(false);
-  const [particles, setParticles] = useState([]);
+// Demo Selection and Display
+  const [selectedDemo, setSelectedDemo] = useState(null); // Currently selected demo
+  const [isTransitioning, setIsTransitioning] = useState(false); // Animation state for transitions
+  const [demoLoading, setDemoLoading] = useState(false); // Loading state for demo initialization
+
+  // Visual Effects
+  const [particles, setParticles] = useState([]); // Particle animation data
 
   const demos = [
     { 
