@@ -9,6 +9,9 @@ export const useWHSNavigation = () => {
     'act-regulations', 
     'codes-practice',
     'legislative-guidance',
+    'safety-analytics',
+    'compliance-monitoring',
+    'multi-role-support',
     'incident-response',
     'compensation',
     'complaints-reporting'

@@ -42,7 +42,8 @@ const WHSAdvisorOverview = ({ navigation, onNext }) => {
       icon: Eye,
       title: 'Compliance Monitoring',
       description: 'Real-time tracking of WHS regulatory compliance and obligations',
-      color: 'from-blue-500 to-cyan-600'
+      color: 'from-blue-500 to-cyan-600',
+      navTarget: 'compliance-monitoring'
     },
     {
       icon: AlertTriangle,
@@ -54,7 +55,8 @@ const WHSAdvisorOverview = ({ navigation, onNext }) => {
       icon: BarChart3,
       title: 'Safety Analytics',
       description: 'Comprehensive insights and performance metrics for safety management',
-      color: 'from-purple-500 to-indigo-600'
+      color: 'from-purple-500 to-indigo-600',
+      navTarget: 'safety-analytics'
     },
     {
       icon: FileText,
@@ -67,7 +69,8 @@ const WHSAdvisorOverview = ({ navigation, onNext }) => {
       icon: Users,
       title: 'Multi-Role Support',
       description: 'Tailored interfaces for employers, workers, and safety representatives',
-      color: 'from-pink-500 to-rose-600'
+      color: 'from-pink-500 to-rose-600',
+      navTarget: 'multi-role-support'
     }
   ];
 
